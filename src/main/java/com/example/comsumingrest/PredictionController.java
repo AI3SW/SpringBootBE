@@ -9,6 +9,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,11 +35,11 @@ public class PredictionController {
 	public String postPrediction(String image) {
 		RestTemplate restTemplate = new RestTemplate();
 		
-		HttpEntity<Foo> request = new HttpEntity<>(new Foo("bar"));
+		HttpEntity<PredictionSource> request = new HttpEntity<>(new PredictionSource(counter.get(), image));
 		
-		Quote quote = restTemplate.postForObject(predictionURL + "/predict", request, PredictionResult.class);
+		PredictionResult result = restTemplate.postForObject(predictionURL + "/predict", request, PredictionResult.class);
 
 		//return quote.toString() + counter.incrementAndGet();
-		return quote.toString();
+		return result.toString();
 	}
 }
