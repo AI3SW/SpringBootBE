@@ -4,26 +4,23 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PredictionResult {
-	private final long id;
-	private final String output;
+	//private final long id;
+	private final String output_img;
 	
-	public PredictionResult(long id, String output) {
-		this.id = id;
-		this.output = output;
+	
+	public PredictionResult(String output_img) {
+		this.output_img = output_img;
 	}
 	
-	public long getId() {
-		return id;
-	}
 	
 	public String getOutput() {
-		return output;
+		return output_img;
 	}
 	
 	@Override
 	public String toString() {
 		return "Result{" +
-				", output=" + output + 
+				", output=" + output_img + 
 				'}';
 	}
 }
